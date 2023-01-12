@@ -160,8 +160,6 @@ def book_title_search(string, books):
 book_string = book_title_input()
 print('you searched ' + book_string)
 
-print(type(book_string))
-
 book_title_search(book_string, books)
 
 
