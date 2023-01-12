@@ -127,42 +127,41 @@ print('================================================')
 
 # function 2 gets multiple books at once
 
-def get_multi_book_info(**kwargs):
-    for book, in kwargs:
-        t = kwargs['title']
-        a = kwargs['author']
-        y = kwargs['year']
-        r = kwargs['rating']
-        p = kwargs['pages']
-
-        book_string = f"{t} is a book written by {a} that contains {p} pages, has a rating of {r}, and was written in {y}."
-    print(book_string)
-    return book_string
+def get_multi_book_info(*args):
+         for item in args:
+            t = item['title']
+            a = item['author']
+            y = item['year']
+            r = item['rating']
+            p = item['pages']
+            book_string = f"{t} is a book written by {a} that contains {p} pages, has a rating of {r}, and was written in {y}."
+            print(book_string)
+            print('================================================')
+            
 
 get_multi_book_info(my_book, my_book2)
 
 
 # function 3 reutrns book searched for
 
-# def book_title_input():
-#     search = input("please enter key letters or words of the title your looking for")
-#     return search
+def book_title_input():
+    search = input("please enter key letters or words of the title your looking for")
+    return search
 
 
 
-# def book_title_search(string, books):
-#     matching_books = 'The matching results are'
-#     for book in books:
-#         if string in books[book]:
-#             matching_books += f'{books[book]}'
-#     return matching_books
+def book_title_search(string, books):
+    for book in books:
+        bk = book.lower()
+        if string in bk:
+            print(f'found the following matching results: {bk}')
 
 
-# book_string = book_title_input()
-# print('you searched ' + book_string)
+book_string = book_title_input()
+print('you searched ' + book_string)
 
-# print(type(book_string))
+print(type(book_string))
 
-# book_title_search(book_string, books)
+book_title_search(book_string, books)
 
 
