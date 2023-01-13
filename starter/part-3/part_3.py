@@ -145,7 +145,7 @@ get_multi_book_info(my_book, my_book2)
 # function 3 reutrns book searched for
 
 def book_title_input():
-    search = input("please enter key letters or words of the title your looking for")
+    search = input("please enter key letters or words of the title your looking for ")
     return search
 
 
