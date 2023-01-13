@@ -1,0 +1,3 @@
+FableHaven, BradonMull, 387, 2008, 4.1
+FableHaven2, BradonMull, 402, 2011, 4.2
+The Lost Hero, Rick Riordan, 557, 2010, 4.8

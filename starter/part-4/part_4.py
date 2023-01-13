@@ -43,6 +43,8 @@ def new_book_input():
         'rating': rating
     }
 
+   
+    print(book_dictionary)
     return book_dictionary
 
 
@@ -118,7 +120,6 @@ def new_book_input():
 
 # Code here
 
-
 def menu():
     print('Menu:')
     print('1: add a book')
@@ -127,34 +128,41 @@ def menu():
 
     result = input('input number for menu option: ')
 
-    if result == '1':
-        new_book = new_book_input()
-        print('')
-        print(new_book['title'])
-        print('by')
-        print(new_book['author'])
-        print('added to library')  
+    while not result == '3':
+
+
+        if result == '1':
+            new_book = new_book_input()
+            print(new_book['title'])
+            print('by')
+            print(new_book['author'])
+            print('added to library')  
+ 
+
+        elif result == '2':
+            def get_books():
+                book_titles = []
+                for book in book_list:
+                    book_titles.append(book_list[f'{book}']['title'])
+                print('Books in Library:')
+                return book_titles
+        
+            books = get_books()
+            print(books)
+
+        else:
+            print("not a valid input, please enter a number for menu: ")
+
         print('')
         menu()
-    elif result == '2':
-        def get_books():
-            book_titles = []
-            for book in book_list:
-                book_titles.append(book_list[f'{book}']['title'])
-            print('Books in library: ')
-            print(book_titles)
-            print('')
-            menu()
-
-        books = get_books()
-        print(books)
-    elif result == '3':
+        break
+    
+    if result == '3':
         print('exited menu')
-    else:
-        return "not a valid input, please enter 1 or 2"
-
 
 menu()
+
+
 
 
 
