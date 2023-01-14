@@ -8,9 +8,6 @@
 # with open('library.txt','a') as file:
 #     file.write('FableHaven2, BradonMull, 2011, 4.2, 402\n')
 
-
-
-
 #### Step 2 - Read data from a .txt
 
 ### Now take your previously create function which prints info about all the books in your library, but gets the info from a list, 
@@ -18,10 +15,45 @@
 
 # Code here
 
-def get_book_dictionary():
+### Step 3 - if __name__ == "__main__":
+
+## Wrap your main menu function call in an "if __name__ == '__main__':" statement to ensure it doesn't accidentally run if this file is imported as a module elsewhere.
+
+# Code this at the bottom of the script
+
+### Step 4 - Expand and refactor
+
+## Now follow the instructions in this final step. Expand your project. Clean up the code. Make your application functional. Great job getting your first Python 
+# application finished!
+
+# THIS WORKS!!!!
+
+# def get_book_dictionary():
+#     with open('library.txt', 'r') as file:
+#         file = file.readlines()
+
+#         for line in file:
+#             title, author, pages, year, rating = line.split(',')
+
+#             book_dictionary = {
+#                 'title': title,
+#                 'author': author,
+#                 'pages': int(pages),
+#                 'year': int(year),
+#                 'rating': float(rating)
+#             }
+
+#             print(book_dictionary)
+#             return book_dictionary
+
+
+#BOOK INFO
+
+def get_book_list():
     with open('library.txt', 'r') as file:
         file = file.readlines()
-
+        num = 0
+        book_list = {}
         for line in file:
             title, author, pages, year, rating = line.split(',')
 
@@ -33,22 +65,64 @@ def get_book_dictionary():
                 'rating': float(rating)
             }
 
-            print(book_dictionary)
+            num += 1
 
-### Step 3 - if __name__ == "__main__":
-
-## Wrap your main menu function call in an "if __name__ == '__main__':" statement to ensure it doesn't accidentally run if this file is imported as a module elsewhere.
-
-# Code this at the bottom of the script
+            book_list[num] = book_dictionary
+        
+        return book_list
 
 
+# get_book_list()
 
-### Step 4 - Expand and refactor
 
-## Now follow the instructions in this final step. Expand your project. Clean up the code. Make your application functional. Great job getting your first Python 
-# application finished!
 
-# FUNCTIONS:
+def get_book_list_title_author(dictionary):
+    for value in dictionary.values():
+        print(value['title'] + ' by' + value['author'])
+
+def get_book_title(dictionary):
+       for value in dictionary.values():
+        print(value['title'])
+
+
+
+
+# 4 BOOK TITLE SEARCH
+
+def book_title_input():
+    search = input("please enter key letters or words of the title your looking for ")
+    return search
+
+
+
+def book_title_search(string, books):
+    for value in books.values():
+        bk = value['title'].lower()
+        if string in bk:
+            print(f'found the following matching results: {bk}')
+
+# 5 BOOK AUTHOR SEARCH
+
+def book_author_input():
+    search = input("please enter key letters, or name of the author your looking for ")
+    return search
+
+
+
+def book_author_search(string, books):
+    for value in books.values():
+        bk = value['author'].lower()
+        if string in bk:
+            print(f'found the following matching results: {bk}')
+
+    # for book in books:
+    #     bk = book.lower()
+    #     if string in bk:
+    #         print(f'found the following matching results: {bk}')
+
+
+
+# 2 ADD A BOOK 
 
 def new_book_input():
     
@@ -84,7 +158,8 @@ def new_book_input():
 
     return book_dictionary
 
-# MENU
+
+# MAIN MENU
 
 
 if __name__ == '__main__':
@@ -93,10 +168,11 @@ if __name__ == '__main__':
         print('1: exit')
         print('2: add a book')
         print('3: library')
-        print('4: search')
+        print('4: search by title')
+        print('5: search by author')
         print('')
         result = input('input number for menu option: ')
-
+        print('')
         while not result == '1':
 
 
@@ -109,7 +185,21 @@ if __name__ == '__main__':
     
 
             elif result == '3':
-                get_book_dictionary()
+                print('The library contains these books:')
+                print('')
+                get_book_list_title_author(get_book_list())
+
+            elif result == '4':
+                book_string = book_title_input()
+                books = get_book_list()
+                print('you searched ' + book_string)
+                book_title_search(book_string, books)               
+
+            elif result == '5':
+                book_string = book_author_input()
+                books = get_book_list()
+                print('you searched ' + book_string)
+                book_author_search(book_string, books)    
 
             else:
                 print("not a valid input, please enter a number for menu: ")
