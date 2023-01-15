@@ -115,11 +115,23 @@ def book_author_search(string, books):
         if string in bk:
             print(f'found the following matching results: {bk}')
 
-    # for book in books:
-    #     bk = book.lower()
-    #     if string in bk:
-    #         print(f'found the following matching results: {bk}')
 
+# 6 GET INFO
+
+def book_info_input():
+    search = input("please enter the title of the book you want information of: ")
+    return search
+
+def book_info_search(string, books):
+    for value in books.values():
+        bk = value['title'].lower()
+        t = value['title']
+        a = value['author']
+        y = value['year']
+        r = value['rating']
+        p = value['pages']
+        if string == bk:
+            print(f"{t} is a book written by{a} that contains {p} pages, has a rating of {r}, and was written in {y}.")
 
 
 # 2 ADD A BOOK 
@@ -170,6 +182,7 @@ if __name__ == '__main__':
         print('3: library')
         print('4: search by title')
         print('5: search by author')
+        print('6: get a books information')
         print('')
         result = input('input number for menu option: ')
         print('')
@@ -199,7 +212,13 @@ if __name__ == '__main__':
                 book_string = book_author_input()
                 books = get_book_list()
                 print('you searched ' + book_string)
-                book_author_search(book_string, books)    
+                book_author_search(book_string, books) 
+
+            elif result == '6':
+                book_string = book_info_input()
+                books = get_book_list()
+                print('you searched ' + book_string)
+                book_info_search(book_string, books)
 
             else:
                 print("not a valid input, please enter a number for menu: ")
